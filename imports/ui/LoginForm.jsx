@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import React, { useState } from 'react';
-import { NewUser } from './NewUser';
+import { Link } from 'react-router-dom';
 
 export const LoginForm = () => {
     const [username, setUsername] = useState('');
@@ -22,8 +22,7 @@ export const LoginForm = () => {
                         required
                         onChange={e => setPassword(e.target.value)} /><br /><br />
                     <button type="submit" id="button-login-out">Entrar</button><br /><br />
-                    <a href="#" id="cadastro-login" title="Cadastre-se">Não tem cadastro? Cadastre-se!</a><br />
-                    <a href="#" id="cadastro-login" title="Esqueceu a Senha">Esqueci minha senha</a>
+                    <Link to='/recuperasenha' id="cadastro-login" title="Cadastre-se">Esqueci minha senha</Link>
                 </div>
             </div>
         </form>

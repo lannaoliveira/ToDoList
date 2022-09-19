@@ -4,10 +4,11 @@ body {
 
 #login {
   position: absolute;
-  margin: 0 235px;
+  padding: 0;
+  margin: 50px 200px;
   background: fixed;
   width: 960px;
-  height: 600px;
+  height: 500px;
   background: url('login.png');
 }
 
@@ -39,7 +40,7 @@ body {
 
 #info-login{
   justify-content: center;
-  margin: 145px 300px;
+  margin: 120px 300px;
   text-align: center;
   font-size: 25px;
   font-family: 'Courier New', Courier, monospace;
@@ -77,6 +78,26 @@ input{
   font-size: 18px;
 }
 
-#cadastro-login{
-  font-size: 17px;
+#link-cadastro-login{
+  margin: 10px;
+  font-size: 15px;
+  font-family: 'Courier New', Courier, monospace;
+  color: beige;
+  vertical-align: auto;
+  
+}
+
+#cabecalho{
+  background-image: linear-gradient(to right, red, green, yellow, blue);
+  height: 40px;
+  vertical-align: center;
+  color: white;
+}
+
+#info-cadastro{
+  justify-content: center;
+  margin: 120px 300px;
+  text-align: center;
+  font-size: 25px;
+  font-family: 'Courier New', Courier, monospace;
 }

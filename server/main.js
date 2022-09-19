@@ -6,7 +6,12 @@ const insertTask = taskText => TasksCollection.insert({ text: taskText });
 
 Meteor.methods({
   findUser: function (username) {
-    var usuario = Accounts.findUserByUsername(username);
+    let usuario = Accounts.findUserByUsername(username);
+    return usuario;
+  },
+
+  checkUser: function (username, senha){
+    let usuario = Accounts._checkPassword(Accounts.findUserByUsername(username), senha);
     return usuario;
   }
 });

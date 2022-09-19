@@ -1,45 +1,26 @@
 import React, { Fragment } from 'react';
 import { useTracker } from 'meteor/react-meteor-data';
-import { TasksCollection } from '/imports/api/TasksCollection';
-import { Task } from './Task';
-import { TaskForm } from './TaskForm';
 import { LoginForm } from './LoginForm';
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import { NewUser } from './NewUser';
+import { RestorePass } from './RestorePass';
 
 export const App = () => {
-  const tasks = useTracker(() => TasksCollection.find({}, { sort: { createdAt: -1 } }).fetch());
+
   const user = useTracker(() => Accounts.user());
 
-  const toggleChecked = ({ _id, isChecked }) => {
-    TasksCollection.update(_id, {
-      $set: {
-        isChecked: !isChecked
-      }
-    })
-  };
-
-  const deleteTask = ({ _id }) => TasksCollection.remove(_id);
-
   return (
-    <div className="main">
-      {user ? (
-        <Fragment>
-          <TaskForm />
-          <ul className="tasks">
-            {tasks.map(task => (
-              <Task
-                key={task._id}
-                task={task}
-                onCheckboxClick={toggleChecked}
-                onDeleteClick={deleteTask}
-              />
-            ))}
-          </ul>
-          <button id="button-login-out" onClick={() => {}}>Sair</button>
-        </Fragment>
-      ) : (
-        <LoginForm />
-      )}
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/' element={<LoginForm />} />
+        <Route path='/cadastro' element={<NewUser />} />
+        <Route path='/recuperasenha' element={<RestorePass />} />
+      </Routes>
+
+      <header id='cabecalho'>
+        <br/><Link to={'/cadastro'} id="link-cadastro-login" title="Cadastre-se">Não tem cadastro? Cadastre-se!</Link><br />
+      </header>
+      
+    </Router>
   );
 };
