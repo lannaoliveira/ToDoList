@@ -1,6 +1,6 @@
+import { Button } from '@material-ui/core';
 import { Meteor } from 'meteor/meteor';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 export const LoginForm = () => {
     const [username, setUsername] = useState('');
@@ -21,8 +21,7 @@ export const LoginForm = () => {
                     <input type="password" placeholder="informe sua senha" name="password"
                         required
                         onChange={e => setPassword(e.target.value)} /><br /><br />
-                    <button type="submit" id="button-login-out">Entrar</button><br /><br />
-                    <Link to='/recuperasenha' id="cadastro-login" title="Cadastre-se">Esqueci minha senha</Link>
+                    <Button type="submit" id="button-login-out">Entrar</Button><br /><br />
                 </div>
             </div>
         </form>

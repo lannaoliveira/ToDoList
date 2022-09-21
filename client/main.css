@@ -5,32 +5,20 @@ body {
 #login {
   position: absolute;
   padding: 0;
-  margin: 50px 200px;
+  margin: 40px 180px;
   background: fixed;
   width: 960px;
   height: 500px;
-  background: url('login.png');
+  background-image: url('login.png');
 }
 
 #tarefa {
-  justify-content: center;
-  margin: 145px 300px;
-  text-align: center;
-  font-size: 25px;
+  margin: -100px -280px;
+  font-size: 5px;
   font-family: 'Courier New', Courier, monospace;
 }
 
-#tarefa-apagar {
-  justify-content: center;
-  text-align: center;
-  font-size: 18px;
-  font-family: 'Courier New', Courier, monospace;
-  background-color: red;
-  border-color: black;
-  border-radius: 20px;
-}
-
-#lista-tarefas{
+#lista-tarefas {
   justify-content: center;
   margin: 145px 300px;
   text-align: center;
@@ -38,7 +26,7 @@ body {
   font-family: 'Courier New', Courier, monospace;
 }
 
-#info-login{
+#info-login {
   justify-content: center;
   margin: 120px 300px;
   text-align: center;
@@ -46,7 +34,7 @@ body {
   font-family: 'Courier New', Courier, monospace;
 }
 
-input{
+input {
   font-family: 'Courier New', Courier, monospace;
   font-size: 15px;
   width: 350px;
@@ -55,7 +43,7 @@ input{
   text-align: center;
 }
 
-#button-task{
+#button-task {
   font-weight: bold;
   font-family: 'Courier New', Courier, monospace;
   background-color: rgb(106, 255, 47);
@@ -66,11 +54,11 @@ input{
   text-transform: uppercase;
   font-size: 15px;
 }
+
 #button-login-out {
   font-weight: bold;
   font-family: 'Courier New', Courier, monospace;
   background-color: rgb(106, 255, 47);
-  border-color: black;
   border-radius: 20px;
   height: 30px;
   width: 200px;
@@ -78,26 +66,46 @@ input{
   font-size: 18px;
 }
 
-#link-cadastro-login{
+#link-cadastro-login {
   margin: 10px;
   font-size: 15px;
   font-family: 'Courier New', Courier, monospace;
   color: beige;
   vertical-align: auto;
-  
+
 }
 
-#cabecalho{
+#cabecalho {
   background-image: linear-gradient(to right, red, green, yellow, blue);
   height: 40px;
   vertical-align: center;
   color: white;
 }
 
-#info-cadastro{
+#info-cadastro {
   justify-content: center;
   margin: 120px 300px;
   text-align: center;
   font-size: 25px;
   font-family: 'Courier New', Courier, monospace;
+}
+
+#cadastro-login {
+  font-size: 20px;
+}
+
+.main {
+  position: absolute;
+  padding: 0;
+  margin: 0px;
+  background: fixed;
+  width: 960px;
+  height: 500px;
+}
+ul{
+  margin-top: 0;
+  padding: 0;
+}
+li {
+  font-size: 15px;
 }
