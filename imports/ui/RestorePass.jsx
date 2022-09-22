@@ -21,7 +21,7 @@ export const RestorePass = () => {
             <div id="login">
                 <div id="info-cadastro">
                     <label>RECUPERAÇÃO DE SENHA</label><br /><br />
-                    <Link to='/' id="cadastro-login" title="Voltar">Voltar para tela de login</Link><br />
+                    <Link to='/' id="link" title="Voltar">Voltar para tela de login</Link><br />
                 </div>
             </div>
         </form>

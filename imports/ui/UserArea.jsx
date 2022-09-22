@@ -5,7 +5,7 @@ import { useTracker } from 'meteor/react-meteor-data';
 import { List } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 
-export const UserArea = () => {
+export const UserArea = (user) => {
 
     const tasks = useTracker(() => TasksCollection.find({}, { sort: { createdAt: -1 } }).fetch());
 
@@ -20,7 +20,7 @@ export const UserArea = () => {
     const deleteTask = ({ _id }) => TasksCollection.remove(_id);
 
     return (
-        <div id='tarefa'>
+        <>
             <List className="tasks">
                 {tasks.map(task => (
                     <Task
@@ -28,12 +28,13 @@ export const UserArea = () => {
                         task={task}
                         onCheckboxClick={toggleChecked}
                         onDeleteClick={deleteTask}
+                        user
                     />
                 ))}
             </List>
-            <Button id="button-login-out" onClick={() => {
+            <Button id="button-logoff" onClick={() => {
                 Accounts.logout()
             }}>Sair</Button>
-        </div>
+        </>
     )
 }
