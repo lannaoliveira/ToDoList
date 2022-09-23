@@ -16,7 +16,6 @@ export const NewUser = () => {
                 password: pswUser,
             }
             );
-            sucessUserCallBack();
         }
     }
 

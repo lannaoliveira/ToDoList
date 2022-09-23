@@ -10,11 +10,12 @@ export const Index = () => {
         <>
             {user ? (
                 <Fragment>
-                    <TaskForm user />
+                    <TaskForm />
                 </Fragment>
             ) : (
                 <LoginForm />
             )}
+
         </>
     )
 }

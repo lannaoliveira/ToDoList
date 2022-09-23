@@ -4,18 +4,23 @@ import { UserArea } from './UserArea';
 import { TasksCollection } from '/imports/api/TasksCollection';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
+import { useTracker } from 'meteor/react-meteor-data';
 
-export const TaskForm = (user) => {
+export const TaskForm = () => {
+    const [titulo, setTitulo] = useState("");
     const [text, setText] = useState("");
+    const user = useTracker(() => Accounts.user().username);
 
     const handleSubmit = e => {
         e.preventDefault();
 
-        if (!text) return;
+        if (!text && !titulo) return;
 
         TasksCollection.insert({
+            titulo: titulo.trim(),
             text: text.trim(),
-            createdAt: new Date()
+            createdAt: new Date(),
+            userLog: user,
         });
 
         setText("");
@@ -24,14 +29,15 @@ export const TaskForm = (user) => {
     return (
         <div id='tarefa'>
             <form onSubmit={handleSubmit}>
-                <label>Lista de <b>TAREFAS</b></label>
+                <h1 id='info-task'>Nova Tarefa</h1>
                 <br /><br />
-                <InputLabel id="info-user" htmlFor="component-simple">Tarefa</InputLabel>
-                <Input id="info-task" onChange={(e) => setText(e.target.value)} />
+                <Input id="info-task" placeholder='titulo da tarefa' onChange={(e) => setTitulo(e.target.value)} />
+                <br /><br />
+                <Input id="info-task" placeholder='tarefa' onChange={(e) => setText(e.target.value)} />
                 <br /><br />
                 <Button id="button-task" type="submit">Adicionar Tarefa</Button>
             </form>
-            <UserArea user />
-        </div>
+            <UserArea />
+        </div >
     );
 };

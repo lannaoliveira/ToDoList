@@ -14,32 +14,34 @@ export const LoginForm = () => {
     };
 
     return (
-        <form onSubmit={submit}>
-            <header>
-                <Link to={'/recuperasenha'} id="link" title="RecuperaSenha">Esqueci minha senha</Link><br />
-                <Link to={'/cadastro'} id="link" title="Cadastre-se">Não tem cadastro? Cadastre-se!</Link><br />
+        <>
+            <header id='cabecalho'>
+                <Link to={'/recuperasenha'} id="link-cabecalho" title="RecuperaSenha">Esqueci minha senha</Link><br />
+                <Link to={'/cadastro'} id="link-cabecalho" title="Cadastre-se">Não tem cadastro? Cadastre-se!</Link>
             </header>
-            <div id="login">
-                <div id="info-login">
-                    <label>Bem Vindo à sua <br /> Lista de Tarefas!</label><br /><br />
-                    <TextField
-                        id='info-user'
-                        label="nome de usuario"
-                        variant="outlined"
-                        type="text"
-                        name='username'
-                        onChange={e => setUsername(e.target.value)} />
-                    <br /><br />
-                    <TextField
-                        id="info-user"
-                        label="senha"
-                        type="password"
-                        autoComplete="senha"
-                        onChange={e => setPassword(e.target.value)} />
-                    <br /><br />
-                    <Button type="submit" id="button-login">Entrar</Button><br /><br />
+            <form onSubmit={submit}>
+                <div id="login">
+                    <div id="info-login">
+                        <label>Bem Vindo à sua <br /> Lista de Tarefas!</label><br /><br />
+                        <TextField
+                            id='info-user'
+                            label="nome de usuario"
+                            variant="outlined"
+                            type="text"
+                            name='username'
+                            onChange={e => setUsername(e.target.value)} />
+                        <br /><br />
+                        <TextField
+                            id="info-user"
+                            label="senha"
+                            type="password"
+                            autoComplete="senha"
+                            onChange={e => setPassword(e.target.value)} />
+                        <br /><br />
+                        <Button type="submit" id="button-login">Entrar</Button><br /><br />
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </>
     );
 };
