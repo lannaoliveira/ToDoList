@@ -4,73 +4,64 @@ body {
 
 .main {
   background-image: url('login.png');
+  font-family: 'Courier New', Courier, monospace;
 }
 
 #info-user {
-  font-family: 'Courier New', Courier, monospace;
   width: 250px;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 #info-task {
-  font-family: 'Courier New', Courier, monospace;
   width: 450px;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 #link-cabecalho {
   padding-left: 10px;
   font-size: 14px;
-  font-family: 'Courier New', Courier, monospace;
   vertical-align: auto;
   color: white;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-#link{
+#link {
   font-size: 18px;
-  font-family: 'Courier New', Courier, monospace;
   vertical-align: auto;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 #button-login {
   font-weight: bold;
-  font-family: 'Courier New', Courier, monospace;
   background-color: rgb(106, 255, 47);
   height: 30px;
   width: 150px;
   text-transform: uppercase;
   font-size: 18px;
-}
-
-#button-logoff {
-  margin: 0 150px;
-  font-weight: bold;
   font-family: 'Courier New', Courier, monospace;
-  background-color: rgba(235, 99, 99, 0.747);
-  height: 30px;
-  width: 150px;
-  text-transform: uppercase;
-  font-size: 18px;
 }
 
-#button-taks-delete{
-  background-color: red;
-}
-
-#button-taks-edit{
-  background-color: rgba(79, 123, 204, 0.747);
+.button-logoff {
+  float: right;
 }
 
 #button-task {
+  font-weight: bold;
   font-family: 'Courier New', Courier, monospace;
   background-color: rgba(79, 123, 204, 0.747);
-  height: 30px;
-  width: 250px;
   text-transform: uppercase;
-  font-size: 18px;
+  font-size: 16px;
+}
+
+#texto-inicial {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 25px;
 }
 
 #login {
+  font-family: 'Courier New', Courier, monospace;
   position: absolute;
-  margin: 150px 150px;
+  margin: 150px 180px;
   background: fixed;
   width: 960px;
   height: 500px;
@@ -78,21 +69,22 @@ body {
 }
 
 #info-login {
+  font-family: 'Courier New', Courier, monospace;
   justify-content: center;
   margin: -60px 300px;
   text-align: center;
   font-size: 25px;
-  font-family: 'Courier New', Courier, monospace;
   background-image: url('login.png');
 }
 
 #tarefa {
-  margin: 80px 250px;
-  font-size: 18px;
   font-family: 'Courier New', Courier, monospace;
+  margin: 50px 200px;
+  font-size: 18px;
 }
 
 #cabecalho {
+  font-family: 'Courier New', Courier, monospace;
   background-image: linear-gradient(to right, red, green, yellow, blue);
   height: 40px;
   vertical-align: center;
@@ -101,26 +93,39 @@ body {
 
 #cadastro-login {
   font-size: 20px;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-
-ul {
-  margin-top: 0;
-  padding: 0;
-}
-
-li {
+.tasks {
   font-size: 15px;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-h1 {
-  font-size: 18px;
+.title-task {
+  height: 40px;
+  width: 200px;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-h2 {
-  font-size: 16px;
+.text-task {
+  height: 40px;
+  width: 400px;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-h3{
-  font-size: 15px;
+.user-task {
+  height: 40px;
+  width: 200px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.for-label {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+#fonte {
+  color: black;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
 }

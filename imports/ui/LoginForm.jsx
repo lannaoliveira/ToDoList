@@ -22,7 +22,7 @@ export const LoginForm = () => {
             <form onSubmit={submit}>
                 <div id="login">
                     <div id="info-login">
-                        <label>Bem Vindo à sua <br /> Lista de Tarefas!</label><br /><br />
+                        <h1 id='texto-inicial'>Bem Vindo à sua <br /> Lista de Tarefas!</h1><br />
                         <TextField
                             id='info-user'
                             label="nome de usuario"

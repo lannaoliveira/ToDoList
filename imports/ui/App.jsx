@@ -4,6 +4,8 @@ import { RestorePass } from './RestorePass';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { NewUser } from './NewUser';
 import { Index } from './Index';
+import { EditTask } from './EditTask';
+import { UserL } from './UserL';
 
 export const App = () => {
 
@@ -15,6 +17,8 @@ export const App = () => {
           <Route path='/cadastro' element={<NewUser />} />
           <Route path='/recuperasenha' element={<RestorePass />} />
           <Route path='/tarefas' element={<TaskForm />} />
+          <Route path='/editatarefa' element={<EditTask />} />
+          <Route path='/usuario' element={<UserL />} />
         </Routes>
       </Router>
     </div>

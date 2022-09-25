@@ -3,12 +3,12 @@ import { Task } from './Task';
 import { TasksCollection } from '/imports/api/TasksCollection';
 import { useTracker } from 'meteor/react-meteor-data';
 import { List } from '@material-ui/core';
-import { Button } from '@material-ui/core';
-import { EditTask } from './EditTask';
+import { useNavigate } from 'react-router-dom';
 
 export const UserArea = () => {
 
     const tasks = useTracker(() => TasksCollection.find({}, { sort: { createdAt: -1 } }).fetch());
+    const navigate = useNavigate();
 
     const toggleChecked = ({ _id, isChecked }) => {
         TasksCollection.update(_id, {
@@ -18,11 +18,22 @@ export const UserArea = () => {
         })
     };
 
-    const deleteTask = ({ _id }) => TasksCollection.remove(_id);
-
-    const editTask = ({ _id }) => {
-        <EditTask />
+    const deleteTask = ({ _id }, usuario) => 
+    {
+        if(usuario === Accounts.user().username){
+            TasksCollection.remove(_id);
+        }else{
+            alert(`Você não tem permissão para excluir essa tarefa. Apenas ${usuario} pode fazê-lo.`);
+        }
     }
+
+    const editTarefa = ({ _id }, usuario) => {
+        if(usuario === Accounts.user().username){
+            navigate('/editatarefa');
+        }else{
+            alert(`Você não tem permissão para editar essa tarefa. Apenas ${usuario} pode fazê-lo.`);
+        }
+      }
 
     return (
         <>
@@ -33,14 +44,11 @@ export const UserArea = () => {
                         task={task}
                         onCheckboxClick={toggleChecked}
                         onDeleteClick={deleteTask}
-                        onEdit={editTask}
+                        onEditTarefa={editTarefa}
                     />
                 ))
                 }
             </List>
-            <Button id="button-logoff" onClick={() => {
-                Accounts.logout()
-            }}>Sair</Button>
         </>
     )
 }
