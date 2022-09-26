@@ -1,131 +1,167 @@
 body {
   margin: 0;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .main {
   background-image: url('login.png');
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Times New Roman', Times, serif;
 }
 
-#info-user {
+.info-user {
   width: 250px;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 #info-task {
   width: 450px;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 #link-cabecalho {
   padding-left: 10px;
-  font-size: 14px;
+  font-size: 15px;
   vertical-align: auto;
   color: white;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 #link {
-  font-size: 18px;
+  font-size: 17px;
   vertical-align: auto;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 #button-login {
   font-weight: bold;
-  background-color: rgb(106, 255, 47);
+  background-color: #5D9B9B;
   height: 30px;
   width: 150px;
   text-transform: uppercase;
   font-size: 18px;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Times New Roman', Times, serif;
 }
 
-.button-logoff {
+.blogoff{
   float: right;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 #button-task {
   font-weight: bold;
-  font-family: 'Courier New', Courier, monospace;
-  background-color: rgba(79, 123, 204, 0.747);
+  background-color: #5D9B9B;
   text-transform: uppercase;
   font-size: 16px;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 #texto-inicial {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Times New Roman', Times, serif;
   font-size: 25px;
 }
 
 #login {
-  font-family: 'Courier New', Courier, monospace;
   position: absolute;
   margin: 150px 180px;
   background: fixed;
   width: 960px;
   height: 500px;
   background-image: url('login.png');
+  font-family: 'Times New Roman', Times, serif;
 }
 
 #info-login {
-  font-family: 'Courier New', Courier, monospace;
   justify-content: center;
   margin: -60px 300px;
   text-align: center;
   font-size: 25px;
   background-image: url('login.png');
+  font-family: 'Times New Roman', Times, serif;
 }
 
 #tarefa {
-  font-family: 'Courier New', Courier, monospace;
-  margin: 50px 200px;
+  margin: 20px 20px 20px 280px;
   font-size: 18px;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 #cabecalho {
-  font-family: 'Courier New', Courier, monospace;
-  background-image: linear-gradient(to right, red, green, yellow, blue);
+  background-image: linear-gradient(to right, #5D9B9B, #969696, #dcdcdc);
   height: 40px;
   vertical-align: center;
   color: white;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 #cadastro-login {
   font-size: 20px;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .tasks {
   font-size: 15px;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .title-task {
   height: 40px;
   width: 200px;
   font-weight: bold;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .text-task {
   height: 40px;
   width: 400px;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .user-task {
   height: 40px;
   width: 200px;
-  font-family: 'Courier New', Courier, monospace;
-}
-
-.for-label {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 #fonte {
   color: black;
   font-weight: bold;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+h1{
+  font-size: 18px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.tolbar{
+  background-color: #5D9B9B;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+}
+
+.usuario-dados{
+  margin: 20px 20px 20px 280px;
+  font-size: 18px;
+  font-family: 'Times New Roman', Times, serif;
+  float: left;
+}
+
+.dados-user{
+  background-color: #cfcfcf;
+  width: 500px;
+  height: 30px;
+  text-align: left;
+  vertical-align: center;
+}
+
+.dados-user-um{
+  background-color: #cfcfcf;
+  width: 200px;
+  height: 30px;
+  text-align: left;
+  vertical-align: center;
+}
+
+.for-label{
+  font-size: 25px;
 }

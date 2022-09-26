@@ -6,11 +6,13 @@ import { NewUser } from './NewUser';
 import { Index } from './Index';
 import { EditTask } from './EditTask';
 import { UserL } from './UserL';
+import { EditUser } from './EditUser';
 
 export const App = () => {
 
   return (
     <div className='main'>
+      
       <Router>
         <Routes>
           <Route path='/' element={<Index />} />

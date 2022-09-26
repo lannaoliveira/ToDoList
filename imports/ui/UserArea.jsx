@@ -18,22 +18,21 @@ export const UserArea = () => {
         })
     };
 
-    const deleteTask = ({ _id }, usuario) => 
-    {
-        if(usuario === Accounts.user().username){
+    const deleteTask = ({ _id }, usuario) => {
+        if (usuario === Accounts.user().username) {
             TasksCollection.remove(_id);
-        }else{
+        } else {
             alert(`Você não tem permissão para excluir essa tarefa. Apenas ${usuario} pode fazê-lo.`);
         }
     }
 
     const editTarefa = ({ _id }, usuario) => {
-        if(usuario === Accounts.user().username){
-            navigate('/editatarefa');
-        }else{
+        if (usuario === Accounts.user().username) {
+            navigate('\editatarefa')
+        } else {
             alert(`Você não tem permissão para editar essa tarefa. Apenas ${usuario} pode fazê-lo.`);
         }
-      }
+    }
 
     return (
         <>

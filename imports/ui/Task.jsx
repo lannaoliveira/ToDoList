@@ -5,7 +5,6 @@ import { ListItemButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import React from 'react';
 
-
 export const Task = ({ task, onCheckboxClick, onDeleteClick, onEditTarefa }) => {
 
   return (

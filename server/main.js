@@ -1,8 +1,10 @@
 import { Meteor } from 'meteor/meteor';
 import { TasksCollection } from '/imports/api/TasksCollection';
 import { Accounts } from 'meteor/accounts-base'
+import { UserCollection } from '/imports/api/UserCollection';
 
 const insertTask = taskText => TasksCollection.insert({ text: taskText });
+const insertUser = userEstado => UserCollection.insert({ estadoCivil: userEstado });
 
 Meteor.methods({
   findUser: function (username) {
@@ -10,16 +12,19 @@ Meteor.methods({
     return usuario;
   },
 
-  checkUser: function (username, senha){
-    let usuario = Accounts._checkPassword(Accounts.findUserByUsername(username), senha);
+  checkUser: function (email, senha){
+    let usuario = Accounts._checkPassword(Accounts.findUserByUsername(email), senha);
     return usuario;
   }
 });
 
 Meteor.startup(() => {
 
-  /** iniciando a lista de tarefas sem nenhum elemento */
+  if (UserCollection.find().count() === 0) {
+    [].forEach(insertUser);
+  }
+  
   if (TasksCollection.find().count() === 0) {
-    [].forEach(insertTask)
+    [].forEach(insertTask);
   }
 });

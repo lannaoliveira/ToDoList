@@ -6,7 +6,6 @@ import { TasksCollection } from '/imports/api/TasksCollection';
 import { useTracker } from 'meteor/react-meteor-data';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import LogoutIcon from '@mui/icons-material/Logout';
 
 export const TaskForm = () => {
     const [titulo, setTitulo] = useState("");
@@ -17,8 +16,6 @@ export const TaskForm = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-
-        if (!text && !titulo) return;
 
         TasksCollection.insert({
             titulo: titulo.trim(),
@@ -34,19 +31,12 @@ export const TaskForm = () => {
 
     return (
         <>
-            <header id='cabecalho'></header>
             <div id='tarefa'>
-                <span className="button-logoff"> Olá <b>{Accounts.user().username}</b>,</span>
-                <br />
-                <Button className="button-logoff" onClick={() => {
-                    Accounts.logout()
-                }}><LogoutIcon /></Button>
-                <br /><br />
                 <FormLabel className='for-label'><span id='fonte'>Nova Tarefa</span></FormLabel>
                 <form onSubmit={handleSubmit}>
                     <List>
-                        <ListItem><TextField id="info-task" variant="outlined" placeholder='titulo da tarefa' onChange={(e) => setTitulo(e.target.value)} /></ListItem>
-                        <ListItem><TextField id="info-task" variant="outlined" placeholder='tarefa' onChange={(e) => setText(e.target.value)} /></ListItem>
+                        <ListItem><TextField id="info-task" required={true} variant="outlined" placeholder='titulo da tarefa' onChange={(e) => setTitulo(e.target.value)} /></ListItem>
+                        <ListItem><TextField id="info-task" required={true} variant="outlined" placeholder='tarefa' onChange={(e) => setText(e.target.value)} /></ListItem>
                         <ListItem>
                             <RadioGroup
                                 aria-labelledby="demo-radio-buttons-group-label"
@@ -65,6 +55,7 @@ export const TaskForm = () => {
                 </form>
                 <br />
                 <h1> Tarefas </h1>
+                <hr />
                 <UserArea />
             </div >
         </>

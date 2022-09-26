@@ -3,19 +3,26 @@ import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import { Button, FormLabel } from '@material-ui/core';
+import { UserCollection } from '/imports/api/UserCollection';
 
 export const NewUser = () => {
 
     const [nameUser, setNameUser] = useState('');
     const [pswUser, setPswUser] = useState('');
     const [emailUser, setEmail] = useState('');
-    const [dataNascUser, setDataNascUser] = useState('');
-    const [sexoUser, setSexoUser] = useState('');
-    const [empresaUser, setEmpresa] = useState('');
 
     const submit = () => {
+
+        UserCollection.insert({
+            email: {
+                address: emailUser,
+                verified: false
+            }
+        });
+
         if (!Meteor.call('findUser', nameUser, findUserCallBack)) {
             Accounts.createUser({
+                email: emailUser,
                 username: nameUser,
                 password: pswUser,
             }
@@ -28,7 +35,7 @@ export const NewUser = () => {
     }
 
     function findUserCallBack(error, usuario) {
-        alert(`Nome de usuario: ${usuario.username} ja utilizado. Utilize outro nome ou a opção de redefinir senha.`);
+        alert(`E-mail ja utilizado. Utilize outro e-mail ou a opção de redefinir senha.`);
     }
 
     return (
@@ -39,15 +46,26 @@ export const NewUser = () => {
                     <div id="info-login">
                         <FormLabel>CADASTRO</FormLabel><br /><br />
                         <TextField
-                            id='info-user'
-                            label="nome de usuario"
+                            className='info-user'
+                            required={true}
+                            label="nome"
                             variant="outlined"
                             type="text"
                             name='nameUser'
                             onChange={e => setNameUser(e.target.value)} />
                         <br /><br />
                         <TextField
-                            id="info-user"
+                            required={true}
+                            className='info-user'
+                            label="email"
+                            variant="outlined"
+                            type="email"
+                            name='e-mail'
+                            onChange={e => setEmail(e.target.value)} />
+                        <br /><br />
+                        <TextField
+                            required={true}
+                            className='info-user'
                             label="senha"
                             type="password"
                             autoComplete="senha"

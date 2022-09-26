@@ -5,12 +5,12 @@ import TextField from '@mui/material/TextField';
 import { Link } from 'react-router-dom';
 
 export const LoginForm = () => {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const submit = e => {
         e.preventDefault();
-        Meteor.loginWithPassword(username, password);
+        Meteor.loginWithPassword(email, password);
     };
 
     return (
@@ -24,15 +24,17 @@ export const LoginForm = () => {
                     <div id="info-login">
                         <h1 id='texto-inicial'>Bem Vindo à sua <br /> Lista de Tarefas!</h1><br />
                         <TextField
-                            id='info-user'
-                            label="nome de usuario"
+                            className='info-user'
+                            required={true}
+                            label="e-mail"
                             variant="outlined"
                             type="text"
-                            name='username'
-                            onChange={e => setUsername(e.target.value)} />
+                            name='e-mail'
+                            onChange={e => setEmail(e.target.value)} />
                         <br /><br />
                         <TextField
-                            id="info-user"
+                            required={true}
+                            className='info-user'
                             label="senha"
                             type="password"
                             autoComplete="senha"
