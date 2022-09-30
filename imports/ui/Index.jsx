@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { useTracker } from 'meteor/react-meteor-data';
 import { LoginForm } from './LoginForm';
 import { Button, List, ListItem } from '@material-ui/core';
@@ -16,16 +16,18 @@ import TaskIcon from '@mui/icons-material/Task';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import HomeIcon from '@mui/icons-material/Home';
 import { TaskForm } from './TaskForm';
+import { useNavigate } from 'react-router-dom';
 
 export const Index = () => {
 
     const user = useTracker(() => Accounts.user());
     const drawerWidth = 240;
+    const navi = useNavigate();
 
     return (
         <>
             {user ? (
-                <Fragment>
+                <>
                     <Box sx={{ display: 'flex' }}>
                         <CssBaseline />
                         <AppBar
@@ -45,22 +47,27 @@ export const Index = () => {
                             anchor="left"
                         >
                             <Toolbar className='tolbar'>
-                                <span> Olá <b>{Accounts.user().username}</b>,</span><HomeIcon />
+                                <HomeIcon /><span> Olá <b>{Accounts.user().username}</b>,</span>
                                 <br />
-
                             </Toolbar>
                             <Divider />
                             <List>
-                                {['Meus Dados', 'Tarefas'].map((text, index) => (
-                                    <ListItem key={text}>
-                                        <ListItemButton>
-                                            <ListItemIcon>
-                                                {index % 2 === 0 ? <AccountCircleIcon /> : <TaskIcon />}
-                                            </ListItemIcon>
-                                            <ListItemText primary={text} />
-                                        </ListItemButton>
-                                    </ListItem>
-                                ))}
+                                <ListItem >
+                                    <ListItemButton onClick={() => { navi('/usuario') }} >
+                                        <ListItemIcon >
+                                            <AccountCircleIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary={'Meus Dados'} />
+                                    </ListItemButton>
+                                </ListItem>
+                                <ListItem >
+                                    <ListItemButton onClick={() => { navi('/tarefas') }}>
+                                        <ListItemIcon>
+                                            <TaskIcon />
+                                        </ListItemIcon>
+                                        <ListItemText primary={'Tarefas'} />
+                                    </ListItemButton>
+                                </ListItem>
                             </List>
                             <Button className='blogoff' onClick={() => {
                                 Accounts.logout()
@@ -68,11 +75,11 @@ export const Index = () => {
                         </Drawer>
                     </Box>
                     <TaskForm />
-                </Fragment>
+                </>
             ) : (
                 <LoginForm />
-            )}
-
+            )
+            }
         </>
     )
 }

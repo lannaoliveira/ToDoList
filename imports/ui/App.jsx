@@ -12,14 +12,14 @@ export const App = () => {
 
   return (
     <div className='main'>
-      
+
       <Router>
         <Routes>
           <Route path='/' element={<Index />} />
           <Route path='/cadastro' element={<NewUser />} />
           <Route path='/recuperasenha' element={<RestorePass />} />
           <Route path='/tarefas' element={<TaskForm />} />
-          <Route path='/editatarefa' element={<EditTask />} />
+          <Route path='editatarefa/:id' element={<EditTask />} />
           <Route path='/usuario' element={<UserL />} />
         </Routes>
       </Router>

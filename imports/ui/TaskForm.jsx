@@ -6,13 +6,29 @@ import { TasksCollection } from '/imports/api/TasksCollection';
 import { useTracker } from 'meteor/react-meteor-data';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import LogoutIcon from '@mui/icons-material/Logout';
+import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
+import CssBaseline from '@mui/material/CssBaseline';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Divider from '@mui/material/Divider';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import TaskIcon from '@mui/icons-material/Task';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import HomeIcon from '@mui/icons-material/Home';
+import { useNavigate } from 'react-router-dom';
 
 export const TaskForm = () => {
     const [titulo, setTitulo] = useState("");
     const [pessoal, setPessoal] = useState("");
     const [text, setText] = useState("");
     const [status, setStatus] = useState("");
-    const user = useTracker(() => Accounts.user().username);
+    const user = Accounts.user().username;
+    const drawerWidth = 240;
+    const navi = useNavigate();
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -23,7 +39,7 @@ export const TaskForm = () => {
             createdAt: new Date(),
             userLog: user,
             pessoal: pessoal,
-            status: status
+            status: status,
         });
 
         setText("");
@@ -31,6 +47,60 @@ export const TaskForm = () => {
 
     return (
         <>
+            <Box sx={{ display: 'flex' }}>
+                <CssBaseline />
+                <AppBar
+                    position="fixed"
+                    sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+                />
+                <Drawer
+                    sx={{
+                        width: drawerWidth,
+                        flexShrink: 0,
+                        '& .MuiDrawer-paper': {
+                            width: drawerWidth,
+                            boxSizing: 'border-box',
+                        },
+                    }}
+                    variant="permanent"
+                    anchor="left"
+                >
+                    <Toolbar className='tolbar'>
+                        <span> Olá <b>{Accounts.user().username}</b>,</span>
+                        <br />
+                    </Toolbar>
+                    <Divider />
+                    <List>
+                        <ListItem >
+                            <ListItemButton onClick={() => { navi('/usuario') }} >
+                                <ListItemIcon >
+                                    <HomeIcon />
+                                </ListItemIcon>
+                                <ListItemText primary={'Página Inicial'} />
+                            </ListItemButton>
+                        </ListItem>
+                        <ListItem >
+                            <ListItemButton onClick={() => { navi('/usuario') }} >
+                                <ListItemIcon >
+                                    <AccountCircleIcon />
+                                </ListItemIcon>
+                                <ListItemText primary={'Meus Dados'} />
+                            </ListItemButton>
+                        </ListItem>
+                        <ListItem >
+                            <ListItemButton onClick={() => { navi('/tarefas') }}>
+                                <ListItemIcon>
+                                    <TaskIcon />
+                                </ListItemIcon>
+                                <ListItemText primary={'Tarefas'} />
+                            </ListItemButton>
+                        </ListItem>
+                    </List>
+                    <Button className='blogoff' onClick={() => {
+                        Accounts.logout()
+                    }}><b>Sair</b><LogoutIcon /></Button>
+                </Drawer>
+            </Box>
             <div id='tarefa'>
                 <FormLabel className='for-label'><span id='fonte'>Nova Tarefa</span></FormLabel>
                 <form onSubmit={handleSubmit}>
@@ -43,7 +113,7 @@ export const TaskForm = () => {
                                 name="radio-buttons-group"
                                 aria-required="true"
                             >
-                                <FormLabel className='for-label'><span id='fonte'>Tarefa Pessoal?</span></FormLabel>
+                                <FormLabel><span id='fonte-tarefa'>Tarefa Pessoal?</span></FormLabel>
                                 <ListItem>
                                     <FormControlLabel value='sim' control={<Radio size="small" onChange={(e) => setPessoal(e.target.value)} />} label={<span id='fonte' style={{ fontSize: '16px', color: 'gray' }}>Sim</span>} />
                                     <FormControlLabel value='nao' control={<Radio size="small" onChange={(e) => setPessoal(e.target.value)} />} label={<span id='fonte' style={{ fontSize: '16px', color: 'gray' }}>Não</span>} />
@@ -54,7 +124,7 @@ export const TaskForm = () => {
                     <Button id="button-task" type="submit">Adicionar Tarefa</Button>
                 </form>
                 <br />
-                <h1> Tarefas </h1>
+                <h1><span id="fonte"> Tarefas </span></h1>
                 <hr />
                 <UserArea />
             </div >

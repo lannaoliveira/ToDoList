@@ -42,7 +42,7 @@ export const Task = ({ task, onCheckboxClick, onDeleteClick, onEditTarefa }) => 
           <ListItemButton className='text-task'>{task.text}</ListItemButton >
           <ListItemButton className='user-task'>Usuário: {task.userLog}</ListItemButton >
           <ListItemButton><IconButton aria-label="delete" onClick={() => onDeleteClick(task, task.userLog)}><DeleteIcon /></IconButton></ListItemButton>
-          <ListItemButton><Button variant="text" className="button-task-edit" onClick={() => { onEditTarefa(task, task.userLog) }}><EditIcon /></Button></ListItemButton>
+          <ListItemButton><Button variant="text" aria-label="editar" className="button-task-edit" onClick={() => { onEditTarefa(task, task.userLog) }}><EditIcon /></Button></ListItemButton>
           <br />
         </div>
       )

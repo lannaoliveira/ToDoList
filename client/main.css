@@ -126,6 +126,14 @@ body {
   color: black;
   font-weight: bold;
   font-family: 'Times New Roman', Times, serif;
+  font-size: 22px;
+}
+
+#fonte-tarefa {
+  color: black;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
 }
 
 h1{
@@ -160,8 +168,4 @@ h1{
   height: 30px;
   text-align: left;
   vertical-align: center;
-}
-
-.for-label{
-  font-size: 25px;
 }

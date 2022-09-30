@@ -14,7 +14,7 @@ export const EditUser = ({ key }) => {
 
     const mySubmit = e => {
         e.preventDefault();
-        
+
         UserCollection.update(key, {
             $set: {
                 data: dataNascUser,
@@ -44,7 +44,7 @@ export const EditUser = ({ key }) => {
                             name="radio-buttons-group"
                             aria-required="true"
                         >
-                            <FormLabel className='for-label'><span id='fonte'>Sexo:</span></FormLabel>
+                            <FormLabel><span id='fonte'>Sexo:</span></FormLabel>
                             <ListItem>
                                 <FormControlLabel value='f' control={<Radio size="small" onChange={(e) => setSexoUser(e.target.value)} />} label={<span id='fonte' style={{ fontSize: '16px', color: 'gray' }}>Feminino</span>} />
                                 <FormControlLabel value='m' control={<Radio size="small" onChange={(e) => setSexoUser(e.target.value)} />} label={<span id='fonte' style={{ fontSize: '16px', color: 'gray' }}>Masculino</span>} />
