@@ -1,5 +1,5 @@
-import { Button, FormLabel, List, ListItem, TextField } from '@material-ui/core';
-import React, { useState } from 'react';
+import { Button, FormLabel, List, ListItem } from '@material-ui/core';
+import React from 'react';
 import { TasksCollection } from '/imports/api/TasksCollection';
 import { useTracker } from 'meteor/react-meteor-data';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -16,14 +16,40 @@ import TaskIcon from '@mui/icons-material/Task';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useState } from 'react';
 
 export const EditTask = () => {
 
     const id = useParams();
+    const [botao, setBotao] = useState(true);
     const tasks = useTracker(() => TasksCollection.find({}, { sort: { createdAt: -1 } }).fetch());
     const task = tasks.filter(o => o._id === id.id);
     const navi = useNavigate();
     const drawerWidth = 240;
+
+    function alteraStatus() {
+        if (task[0].status === 'Cadastrada') {
+            task.map(e => {
+                Meteor.call('mudaStatus', e, 'Andamento');
+            })
+        }
+        setBotao(false);
+    }
+
+    function reiniciaStatus() {
+        task.map(e => {
+            Meteor.call('mudaStatus', e, 'Cadastrada');
+        });
+        setBotao(true);
+    }
+
+    function concluiTarefa() {
+        task.map(e => {
+            Meteor.call('mudaStatus', e, 'Concluída');
+            Meteor.call('checaStatus', e, e.isChecked);
+        });
+        setBotao(true);
+    }
 
     return (
         <>
@@ -83,12 +109,23 @@ export const EditTask = () => {
             </Box>
             <div id='tarefa'>
                 <FormLabel><span id='fonte'>Tarefa </span></FormLabel>
+                <hr />
                 <List>
-                    <ListItem><b>Título da Tarefa: </b> {task[0].titulo} </ListItem>
-                    <ListItem><b>Tarefa: </b> {task[0].text}</ListItem>
-                    <ListItem><b>Usuario: </b> {task[0].userLog}</ListItem>
+                    <ListItem ><span className='list-tar'><b>TÍTULO:</b></span> {task[0].titulo}</ListItem>
+                    <ListItem ><span className='list-tar'><b>DESCRIÇÃO:</b></span> {task[0].text}</ListItem>
+                    <ListItem ><span className='list-tar'><b>USUÁRIO:</b></span> {task[0].userLog}</ListItem>
+                    <ListItem ><span className='list-tar'><b>DATA CRIAÇÃO:</b></span> {task[0].dataCriacao}</ListItem>
+                    <ListItem ><span className='list-tar'><b>DATA ÚLTIMA ALTERAÇÃO:</b></span> {task[0].dataUltimaAlt}</ListItem>
+                    <ListItem><span className='list-tar'><b>STATUS:</b></span> {task[0].status}
+                        <ListItem>
+                            <Button id="button-alt" onClick={alteraStatus}>Alterar Status</Button>
+                            <Button id="button-alt" onClick={reiniciaStatus}>Reiniciar Status</Button>
+                            <Button id="button-alt" disabled={botao} onClick={concluiTarefa}>Concluir Tarefa</Button>
+                        </ListItem>
+                    </ListItem>
                 </List>
                 <Button id="button-task" >Editar Dados</Button>
+                <Button id="button-task" onClick={() => { navi('/') }} >Voltar</Button>
             </div>
         </>
     )

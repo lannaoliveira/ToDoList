@@ -20,6 +20,7 @@ export const App = () => {
           <Route path='/recuperasenha' element={<RestorePass />} />
           <Route path='/tarefas' element={<TaskForm />} />
           <Route path='editatarefa/:id' element={<EditTask />} />
+          <Route path='tarefas/editatarefa/:id' element={<EditTask />} />
           <Route path='/usuario' element={<UserL />} />
         </Routes>
       </Router>

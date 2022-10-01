@@ -11,11 +11,7 @@ export const UserArea = () => {
     const navi = useNavigate();
 
     const toggleChecked = ({ _id, isChecked }) => {
-        TasksCollection.update(_id, {
-            $set: {
-                isChecked: !isChecked
-            }
-        })
+        Meteor.call('checaStatus', _id, isChecked);
     };
 
     const deleteTask = ({ _id }, usuario) => {
@@ -28,7 +24,7 @@ export const UserArea = () => {
 
     const editTarefa = ({ _id }, usuario) => {
         if (usuario === Accounts.user().username) {
-           navi(`editatarefa/${_id}`);
+            navi(`editatarefa/${_id}`);
         } else {
             alert(`Você não tem permissão para editar essa tarefa. Apenas ${usuario} pode fazê-lo.`);
         }

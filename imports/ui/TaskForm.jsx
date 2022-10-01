@@ -3,7 +3,6 @@ import Radio from '@mui/material/Radio';
 import React, { useState } from 'react';
 import { UserArea } from './UserArea';
 import { TasksCollection } from '/imports/api/TasksCollection';
-import { useTracker } from 'meteor/react-meteor-data';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -25,8 +24,8 @@ export const TaskForm = () => {
     const [titulo, setTitulo] = useState("");
     const [pessoal, setPessoal] = useState("");
     const [text, setText] = useState("");
-    const [status, setStatus] = useState("");
     const user = Accounts.user().username;
+    const data = new Date();
     const drawerWidth = 240;
     const navi = useNavigate();
 
@@ -36,10 +35,12 @@ export const TaskForm = () => {
         TasksCollection.insert({
             titulo: titulo.trim(),
             text: text.trim(),
-            createdAt: new Date(),
+            dataCriacao: data.toLocaleDateString(),
+            dataUltimaAlt: data.toLocaleDateString(),
             userLog: user,
             pessoal: pessoal,
-            status: status,
+            status: 'Cadastrada',
+            isChecked: false,
         });
 
         setText("");

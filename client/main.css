@@ -42,16 +42,17 @@ body {
   font-family: 'Times New Roman', Times, serif;
 }
 
-.blogoff{
+.blogoff {
   float: right;
   font-family: 'Times New Roman', Times, serif;
 }
 
 #button-task {
+  margin: 0 10px;
   font-weight: bold;
   background-color: #5D9B9B;
   text-transform: uppercase;
-  font-size: 16px;
+  font-size: 12px;
   font-family: 'Times New Roman', Times, serif;
 }
 
@@ -83,6 +84,7 @@ body {
   margin: 20px 20px 20px 280px;
   font-size: 18px;
   font-family: 'Times New Roman', Times, serif;
+  font-style: initial;
 }
 
 #cabecalho {
@@ -136,25 +138,25 @@ body {
   font-size: 16px;
 }
 
-h1{
+h1 {
   font-size: 18px;
   font-family: 'Times New Roman', Times, serif;
 }
 
-.tolbar{
+.tolbar {
   background-color: #5D9B9B;
   font-family: 'Times New Roman', Times, serif;
   font-size: 20px;
 }
 
-.usuario-dados{
+.usuario-dados {
   margin: 20px 20px 20px 280px;
   font-size: 18px;
   font-family: 'Times New Roman', Times, serif;
   float: left;
 }
 
-.dados-user{
+.dados-user {
   background-color: #cfcfcf;
   width: 500px;
   height: 30px;
@@ -162,10 +164,21 @@ h1{
   vertical-align: center;
 }
 
-.dados-user-um{
+.dados-user-um {
   background-color: #cfcfcf;
   width: 200px;
   height: 30px;
   text-align: left;
   vertical-align: center;
+}
+
+.list-tar {
+  padding-right: 15px;
+}
+
+#button-alt {
+  background-color: #e28d7c;
+  font-size: 10px;
+  font-weight: bold;
+  margin: 0 10px;
 }

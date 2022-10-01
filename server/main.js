@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { TasksCollection } from '/imports/api/TasksCollection';
-import { Accounts } from 'meteor/accounts-base'
 import { UserCollection } from '/imports/api/UserCollection';
+import { Accounts } from 'meteor/accounts-base'
 
 const insertTask = taskText => TasksCollection.insert({ text: taskText });
 const insertUser = useText => UserCollection.insert({ text: useText });
@@ -17,9 +17,27 @@ Meteor.methods({
     return usuario;
   },
 
-  findUserName: function (nameUser){
+  findUserName: function (nameUser) {
     let usuario = Accounts.findUserByUsername(nameUser);
     return usuario
+  },
+
+  mudaStatus: function (_id, statusTask) {
+    const data = new Date();
+    TasksCollection.update(_id, {
+      $set: {
+        dataUltimaAlt: data.toLocaleDateString(),
+        status: statusTask
+      }
+    })
+  },
+
+  checaStatus: function (_id, isChecked) {
+    TasksCollection.update(_id, {
+      $set: {
+        isChecked: !isChecked,
+      }
+    })
   }
 });
 
