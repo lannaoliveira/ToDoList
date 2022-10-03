@@ -23,6 +23,12 @@ export const UserL = () => {
     const usersL = useTracker(() => UserCollection.find({}, { sort: { createdAt: -1 } }).fetch());
     const usersLL = usersL.filter(o => o.username === Accounts.user().username);
     const navi = useNavigate();
+    const dataNiver = usersLL[0].dataNasc.split('-').reverse().join('/');
+    
+    const sair = () => {
+        Accounts.logout();
+        navi('/');
+    }
 
     return (
         <>
@@ -45,13 +51,15 @@ export const UserL = () => {
                     anchor="left"
                 >
                     <Toolbar className='tolbar'>
-                        <span> Olá <b>{Accounts.user().username}</b>,</span>
-                        <br />
+                        <span id='nome-draw'>
+                            Olá <b>{Accounts.user().username}</b>,<br />
+                            {Accounts.user().emails[0].address}
+                        </span>
                     </Toolbar>
                     <Divider />
                     <List>
                         <ListItem >
-                            <ListItemButton onClick={() => { navi('/usuario') }} >
+                            <ListItemButton onClick={() => { navi('/') }} >
                                 <ListItemIcon >
                                     <HomeIcon />
                                 </ListItemIcon>
@@ -75,20 +83,20 @@ export const UserL = () => {
                             </ListItemButton>
                         </ListItem>
                     </List>
-                    <Button className='blogoff' onClick={() => {
-                        Accounts.logout()
-                    }}><b>Sair</b><LogoutIcon /></Button>
+                    <Button className='blogoff' onClick={() => { sair }}><b>Sair</b><LogoutIcon /></Button>
                 </Drawer>
             </Box>
-            <div className='usuario-dados'>
+            <div id='tarefa'>
                 <FormLabel className='for-label'><span id='fonte'>Meus Dados</span></FormLabel>
+                <hr />
                 <List>
-                    <ListItem><b>Username: </b> {Accounts.user().username}</ListItem>
-                    <ListItem><b>E-mail: </b> {Accounts.user().emails[0].address}</ListItem>
-                    <ListItem><b>Empresa: </b> {usersLL[0].empresa}</ListItem>
-                    <ListItem><b>Sexo: </b> {usersLL[0].sexo}</ListItem>
+                    <ListItem><span className='list-tar'><b>USERNAME:</b></span> {Accounts.user().username}</ListItem>
+                    <ListItem><span className='list-tar'><b>E-MAIL:</b></span> {Accounts.user().emails[0].address}</ListItem>
+                    <ListItem><span className='list-tar'><b>DATA NASCIMENTO:</b></span> {dataNiver}</ListItem>
+                    <ListItem><span className='list-tar'><b>EMPRESA:</b></span> {usersLL[0].empresa}</ListItem>
+                    <ListItem><span className='list-tar'><b>SEXO:</b></span> {usersLL[0].sexo}</ListItem>
                 </List>
-                <Button id="button-task" type="submit">Editar Dados</Button>
+                <Button id="button-task" onClick={() => { navi(-1) }} >Voltar</Button>
             </div >
         </>
     )

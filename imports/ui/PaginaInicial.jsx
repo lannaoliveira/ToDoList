@@ -1,11 +1,10 @@
-import { Button, FormLabel, List, ListItem, TextField } from '@material-ui/core';
-import Radio from '@mui/material/Radio';
-import React, { useState } from 'react';
-import { UserArea } from './UserArea';
-import { TasksCollection } from '/imports/api/TasksCollection';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import LogoutIcon from '@mui/icons-material/Logout';
+import * as React from 'react';
+import { List, ListItem } from '@material-ui/core';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -18,33 +17,19 @@ import ListItemText from '@mui/material/ListItemText';
 import TaskIcon from '@mui/icons-material/Task';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import HomeIcon from '@mui/icons-material/Home';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom';
+import { TasksCollection } from '/imports/api/TasksCollection';
+import { useTracker } from 'meteor/react-meteor-data';
 
-export const TaskForm = () => {
-    const [titulo, setTitulo] = useState("");
-    const [pessoal, setPessoal] = useState("");
-    const [text, setText] = useState("");
-    const user = Accounts.user().username;
-    const data = new Date();
+export const PaginaInicial = () => {
+
     const drawerWidth = 240;
     const navi = useNavigate();
-
-    const handleSubmit = e => {
-        e.preventDefault();
-
-        TasksCollection.insert({
-            titulo: titulo.trim(),
-            text: text.trim(),
-            dataCriacao: data.toLocaleDateString(),
-            dataUltimaAlt: data.toLocaleDateString(),
-            userLog: user,
-            pessoal: pessoal,
-            status: 'Cadastrada',
-            isChecked: false,
-        });
-
-        setText("");
-    };
+    const tasks = useTracker(() => TasksCollection.find({}, { sort: { createdAt: -1 } }).fetch());
+    const taskCadastrada = tasks.filter(o => o.status === 'Cadastrada');
+    const taskAndamento = tasks.filter(o => o.status === 'Andamento');
+    const taskConcluida = tasks.filter(o => o.status === 'Concluída');
 
     const sair = () => {
         Accounts.logout();
@@ -104,37 +89,54 @@ export const TaskForm = () => {
                             </ListItemButton>
                         </ListItem>
                     </List>
-                    <Button className='blogoff' onClick={() => {sair}}><b>Sair</b><LogoutIcon /></Button>
+                    <Button className='blogoff' onClick={() => { sair }}><b>Sair</b><LogoutIcon /></Button>
                 </Drawer>
             </Box>
             <div id='tarefa'>
-                <FormLabel className='for-label'><span id='fonte'>Nova Tarefa</span></FormLabel>
-                <form onSubmit={handleSubmit}>
-                    <List>
-                        <ListItem><TextField id="info-task" required={true} variant="outlined" placeholder='titulo da tarefa' onChange={(e) => setTitulo(e.target.value)} /></ListItem>
-                        <ListItem><TextField id="info-task" required={true} variant="outlined" placeholder='tarefa' onChange={(e) => setText(e.target.value)} /></ListItem>
-                        <ListItem>
-                            <RadioGroup
-                                aria-labelledby="demo-radio-buttons-group-label"
-                                name="radio-buttons-group"
-                                aria-required="true"
-                            >
-                                <FormLabel><span id='fonte-tarefa'>Tarefa Pessoal?</span></FormLabel>
-                                <ListItem>
-                                    <FormControlLabel value='sim' control={<Radio size="small" onChange={(e) => setPessoal(e.target.value)} />} label={<span id='fonte' style={{ fontSize: '16px', color: 'gray' }}>Sim</span>} />
-                                    <FormControlLabel value='nao' control={<Radio size="small" onChange={(e) => setPessoal(e.target.value)} />} label={<span id='fonte' style={{ fontSize: '16px', color: 'gray' }}>Não</span>} />
-                                </ListItem>
-                            </RadioGroup>
-                        </ListItem>
-                    </List>
-                    <Button id="button-task" type="submit">Adicionar Tarefa</Button>
-                </form>
+                <Card sx={{ minWidth: 275 }}>
+                    <CardContent>
+                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                            Total de Tarefas
+                        </Typography>
+                        <Typography variant="h5" component="div">
+                            Cadastradas
+                        </Typography>
+                        <Typography variant="h3" component="div">
+                            {taskCadastrada.length}
+                        </Typography>
+                    </CardContent>
+                </Card>
                 <br />
-                <h1><span id="fonte"> Tarefas </span></h1>
-                <div id='observacao'>**Tarefas privadas de outros usuários não serão exibidas, mas serão contabilizadas.</div>
-                <hr />
-                <UserArea />
-            </div >
+                <Card sx={{ minWidth: 275 }}>
+                    <CardContent>
+                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                            Total de Tarefas
+                        </Typography>
+                        <Typography variant="h5" component="div">
+                            Em Andamento
+                        </Typography>
+                        <Typography variant="h3" component="div">
+                            {taskAndamento.length}
+                        </Typography>
+                    </CardContent>
+                </Card>
+                <br />
+                <Card sx={{ minWidth: 275 }}>
+                    <CardContent>
+                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                            Total de Tarefas
+                        </Typography>
+                        <Typography variant="h5" component="div">
+                            Concluídas
+                        </Typography>
+                        <Typography variant="h3" component="div">
+                            {taskConcluida.length}
+                        </Typography>
+                    </CardContent>
+                </Card>
+                <br />
+                <Button id="button-task" onClick={() => { navi('/tarefas') }} >Visualizar Tarefas</Button>
+            </div>
         </>
-    );
-};
+    )
+}

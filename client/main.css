@@ -9,6 +9,8 @@ body {
 }
 
 .info-user {
+  vertical-align: auto;
+  height: 40px;
   width: 250px;
   font-family: 'Times New Roman', Times, serif;
 }
@@ -35,10 +37,8 @@ body {
 #button-login {
   font-weight: bold;
   background-color: #5D9B9B;
-  height: 30px;
-  width: 150px;
   text-transform: uppercase;
-  font-size: 18px;
+  font-size: 14px;
   font-family: 'Times New Roman', Times, serif;
 }
 
@@ -48,6 +48,7 @@ body {
 }
 
 #button-task {
+  color: black;
   margin: 0 10px;
   font-weight: bold;
   background-color: #5D9B9B;
@@ -181,4 +182,41 @@ h1 {
   font-size: 10px;
   font-weight: bold;
   margin: 0 10px;
+}
+
+#info-login-cadastro {
+  justify-content: center;
+  margin: -110px 300px;
+  text-align: center;
+  font-size: 25px;
+  background-image: url('login.png');
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.cadastro-user {
+  margin: 0 0 20px 0;
+  vertical-align: auto;
+  font-family: 'Times New Roman', Times, serif;
+  width: 350px;
+}
+
+.cadastro-um {
+  margin: 0 0 20px 0;
+  vertical-align: auto;
+  font-family: 'Times New Roman', Times, serif;
+  width: 150px;
+}
+
+#texto-cadastro {
+  font-family: 'Times New Roman', Times, serif;
+  text-align: center;
+}
+
+#nome-draw{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
+}
+
+#observacao{
+  font-size: 12px;
 }

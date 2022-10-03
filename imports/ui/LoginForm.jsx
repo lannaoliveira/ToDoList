@@ -16,7 +16,7 @@ export const LoginForm = () => {
     return (
         <>
             <header id='cabecalho'>
-                <Link to={'/recuperasenha'} id="link-cabecalho" title="RecuperaSenha">Esqueci minha senha</Link><br />
+                <br />
                 <Link to={'/cadastro'} id="link-cabecalho" title="Cadastre-se">Não tem cadastro? Cadastre-se!</Link>
             </header>
             <form onSubmit={submit}>
@@ -39,7 +39,7 @@ export const LoginForm = () => {
                             type="password"
                             autoComplete="senha"
                             onChange={e => setPassword(e.target.value)} />
-                        <br /><br />
+                        <br /><br /><br />
                         <Button type="submit" id="button-login">Entrar</Button><br /><br />
                     </div>
                 </div>
