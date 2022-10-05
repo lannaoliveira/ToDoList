@@ -1,4 +1,4 @@
-import { Button, FormLabel, List, ListItem } from '@material-ui/core';
+import { Button, FormLabel, List, ListItem, TextField } from '@material-ui/core';
 import React from 'react';
 import { TasksCollection } from '/imports/api/TasksCollection';
 import { useTracker } from 'meteor/react-meteor-data';
@@ -19,40 +19,39 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 
-export const VeTask = () => {
+export const EditaTask = () => {
 
     const id = useParams();
-    const [botao, setBotao] = useState(false);
-    const [botaoAltera, setBotaoAltera] = useState(false);
     const tasks = useTracker(() => TasksCollection.find({}, { sort: { createdAt: -1 } }).fetch());
     const task = tasks.filter(o => o._id === id.id);
     const navi = useNavigate();
+    const [titulo, setTitulo] = useState("");
+    const [text, setText] = useState("");
     const drawerWidth = 240;
 
-    function alteraStatus() {
-        if (task[0].status === 'Cadastrada') {
-            task.map(e => {
-                Meteor.call('mudaStatus', e, 'Andamento');
-            })
+    const submit = e => {
+        console.log("entra aqui")
+        e.preventDefault();
+
+        if ((titulo != '' && text != '')) {
+            Meteor.call('alterTask', task[0], titulo, text);
+            console.log("altera os dois");
+            alert('Título e Texto da Tarefa alterados.')
+            navi(-1);
+        } else if (titulo != '') {
+            Meteor.call('alterTask', task[0], titulo, task[0].text);
+            alert('Título da Tarefa alterado.');
+            console.log("altera titulo");
+            navi(-1);
+        } else if (text != '') {
+            Meteor.call('alterTask', task[0], task[0].titulo, text);
+            alert('Texto da Tarefa alterado.');
+            console.log("altera text");
+            navi(-1);
+        } else {
+            alert('Nenhum dado modificado');
+            navi(-1);
         }
-        setBotao(false);
-        setBotaoAltera(true);
-    }
-
-    function reiniciaStatus() {
-        task.map(e => {
-            Meteor.call('mudaStatus', e, 'Cadastrada');
-        });
-        setBotao(true);
-        setBotaoAltera(false);
-    }
-
-    function concluiTarefa() {
-        task.map(e => {
-            Meteor.call('mudaStatus', e, 'Concluída');
-            Meteor.call('checaStatus', e, e.isChecked);
-        });
-        setBotao(true);
     }
 
     return (
@@ -110,27 +109,18 @@ export const VeTask = () => {
                     </List>
                     <Button id="button-task" onClick={() => {
                         Accounts.logout();
-                    }}>sair</Button>
+                    }}>Sair</Button>
                 </Drawer>
             </Box>
             <div id='tarefa'>
-                <FormLabel><span id='fonte'>Tarefa </span></FormLabel>
+                <FormLabel><span id='fonte'>Edição de Tarefa </span></FormLabel>
                 <hr />
-                <List>
-                    <ListItem ><span className='list-tar'><b>TÍTULO:</b></span> {task[0].titulo}</ListItem>
-                    <ListItem ><span className='list-tar'><b>DESCRIÇÃO:</b></span> {task[0].text}</ListItem>
-                    <ListItem ><span className='list-tar'><b>USUÁRIO:</b></span> {task[0].userLog}</ListItem>
-                    <ListItem ><span className='list-tar'><b>DATA CRIAÇÃO:</b></span> {task[0].dataCriacao}</ListItem>
-                    <ListItem ><span className='list-tar'><b>DATA ÚLTIMA ALTERAÇÃO:</b></span> {task[0].dataUltimaAlt}</ListItem>
-                    <ListItem><span className='list-tar'><b>STATUS:</b></span> {task[0].status}
-                        <ListItem>
-                            <Button id="button-alt" disabled={botaoAltera} onClick={alteraStatus}>Alterar Status</Button>
-                            <Button id="button-alt" onClick={reiniciaStatus}>Reiniciar Status</Button>
-                            <Button id="button-alt" disabled={botao} onClick={concluiTarefa}>Concluir Tarefa</Button>
-                        </ListItem>
-                    </ListItem>
-                </List>
-                <Button id="button-task" type='submit' onClick={() => { navi('editatarefafinal') }}>Editar Dados</Button>
+                <FormLabel><span className='list-tar'><b>TÍTULO ATUAL:</b></span></FormLabel>{task[0].titulo} <br />
+                <TextField placeholder='novo título' type="text" id="titulotarefa" className='alter-task' variant='outlined' onChange={(e) => setTitulo(e.target.value)} /><br /><br />
+                <FormLabel><span className='list-tar'><b>TEXTO ATUAL:</b></span></FormLabel>{task[0].text} <br />
+                <TextField type="text" placeholder='novo texto' id='texto-tarefa-edicao' variant='outlined' className='alter-task' onChange={(e) => setText(e.target.value)} />
+                <br /><br />
+                <Button id="button-task" onClick={submit}>Salvar</Button>
                 <Button id="button-task" onClick={() => { navi(-1) }} >Voltar</Button>
             </div>
         </>

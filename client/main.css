@@ -16,7 +16,8 @@ body {
 }
 
 #info-task {
-  width: 450px;
+  width: 400px;
+  margin: 0 20px;
   font-family: 'Times New Roman', Times, serif;
 }
 
@@ -45,6 +46,7 @@ body {
 .blogoff {
   float: right;
   font-family: 'Times New Roman', Times, serif;
+  color: black;
 }
 
 #button-task {
@@ -175,6 +177,8 @@ h1 {
 
 .list-tar {
   padding-right: 15px;
+  font-family: 'Times New Roman', Times, serif;
+  color: black;
 }
 
 #button-alt {
@@ -212,11 +216,29 @@ h1 {
   text-align: center;
 }
 
-#nome-draw{
+#nome-draw {
   font-family: 'Times New Roman', Times, serif;
   font-size: 16px;
 }
 
-#observacao{
+#observacao {
   font-size: 12px;
+}
+
+.checkbox {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
+  text-align: center;
+}
+
+.imagem-perfil{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 18px;
+  color: black;
+}
+
+.alter-task{
+  width: 400px;
+  margin: 0 20px;
+  font-family: 'Times New Roman', Times, serif;
 }

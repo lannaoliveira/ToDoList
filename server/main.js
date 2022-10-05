@@ -32,10 +32,19 @@ Meteor.methods({
     })
   },
 
-  checaStatus: function (_id, isChecked) {
+  addImg: function (_id, img) {
+    UserCollection.update(_id, {
+      $set: {
+        foto: img,
+      }
+    })
+  },
+
+  alterTask: function (_id, titulo, texto) {
     TasksCollection.update(_id, {
       $set: {
-        isChecked: !isChecked,
+        titulo: titulo,
+        text: texto,
       }
     })
   }

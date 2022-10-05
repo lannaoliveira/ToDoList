@@ -46,11 +46,6 @@ export const TaskForm = () => {
         setText("");
     };
 
-    const sair = () => {
-        Accounts.logout();
-        navi('/');
-    }
-
     return (
         <>
             <Box sx={{ display: 'flex' }}>
@@ -104,32 +99,37 @@ export const TaskForm = () => {
                             </ListItemButton>
                         </ListItem>
                     </List>
-                    <Button className='blogoff' onClick={() => {sair}}><b>Sair</b><LogoutIcon /></Button>
+                    <Button id="button-task" onClick={() => {
+                                Accounts.logout(), navi('/');
+                            }}>Sair</Button>
                 </Drawer>
             </Box>
             <div id='tarefa'>
                 <FormLabel className='for-label'><span id='fonte'>Nova Tarefa</span></FormLabel>
                 <form onSubmit={handleSubmit}>
                     <List>
-                        <ListItem><TextField id="info-task" required={true} variant="outlined" placeholder='titulo da tarefa' onChange={(e) => setTitulo(e.target.value)} /></ListItem>
-                        <ListItem><TextField id="info-task" required={true} variant="outlined" placeholder='tarefa' onChange={(e) => setText(e.target.value)} /></ListItem>
                         <ListItem>
-                            <RadioGroup
-                                aria-labelledby="demo-radio-buttons-group-label"
-                                name="radio-buttons-group"
-                                aria-required="true"
-                            >
-                                <FormLabel><span id='fonte-tarefa'>Tarefa Pessoal?</span></FormLabel>
-                                <ListItem>
-                                    <FormControlLabel value='sim' control={<Radio size="small" onChange={(e) => setPessoal(e.target.value)} />} label={<span id='fonte' style={{ fontSize: '16px', color: 'gray' }}>Sim</span>} />
-                                    <FormControlLabel value='nao' control={<Radio size="small" onChange={(e) => setPessoal(e.target.value)} />} label={<span id='fonte' style={{ fontSize: '16px', color: 'gray' }}>Não</span>} />
-                                </ListItem>
-                            </RadioGroup>
+                            <TextField id="info-task" variant="outlined" placeholder='titulo da tarefa' onChange={(e) => setTitulo(e.target.value)} />
+                            <ListItem>
+                                <RadioGroup
+                                    aria-labelledby="demo-radio-buttons-group-label"
+                                    name="radio-buttons-group"
+                                    aria-required="true"
+                                >
+                                    <FormLabel><span id='fonte-tarefa'>Tarefa Pessoal?</span></FormLabel>
+                                    <ListItem>
+                                        <FormControlLabel value='sim' control={<Radio size="small" onChange={(e) => setPessoal(e.target.value)} />} label={<span id='fonte' style={{ fontSize: '16px', color: 'gray' }}>Sim</span>} />
+                                        <FormControlLabel value='nao' control={<Radio size="small" onChange={(e) => setPessoal(e.target.value)} />} label={<span id='fonte' style={{ fontSize: '16px', color: 'gray' }}>Não</span>} />
+                                    </ListItem>
+                                </RadioGroup>
+                            </ListItem>
+                        </ListItem>
+                        <ListItem>
+                            <TextField id="info-task" variant="outlined" placeholder='tarefa' onChange={(e) => setText(e.target.value)} />
                         </ListItem>
                     </List>
                     <Button id="button-task" type="submit">Adicionar Tarefa</Button>
                 </form>
-                <br />
                 <h1><span id="fonte"> Tarefas </span></h1>
                 <div id='observacao'>**Tarefas privadas de outros usuários não serão exibidas, mas serão contabilizadas.</div>
                 <hr />

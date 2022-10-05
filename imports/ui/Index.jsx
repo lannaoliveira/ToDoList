@@ -24,11 +24,6 @@ export const Index = () => {
     const drawerWidth = 240;
     const navi = useNavigate();
 
-    const sair = () => {
-        Accounts.logout();
-        navi('/');
-    }
-
     return (
         <>
             {user ? (
@@ -84,7 +79,9 @@ export const Index = () => {
                                     </ListItemButton>
                                 </ListItem>
                             </List>
-                            <Button className='blogoff' onClick={() => {Accounts.logout()}}><b>Sair</b><LogoutIcon /></Button>
+                            <Button id="button-task" onClick={() => {
+                                Accounts.logout();
+                            }}>Sair</Button>
                         </Drawer>
                     </Box>
                     <PaginaInicial />

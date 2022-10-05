@@ -16,6 +16,7 @@ import TaskIcon from '@mui/icons-material/Task';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 export const UserL = () => {
 
@@ -24,9 +25,14 @@ export const UserL = () => {
     const usersLL = usersL.filter(o => o.username === Accounts.user().username);
     const navi = useNavigate();
     const dataNiver = usersLL[0].dataNasc.split('-').reverse().join('/');
-    
-    const sair = () => {
-        Accounts.logout();
+    const [img, setImg] = useState('');
+
+    function carregaImg() {
+        console.log("entra aqui");
+        let file = img.replace(/^data:image\/[a-z]+;base64,/, "");
+        let imagem = `data:image/png;base64,${file}`;
+        Meteor.call('addImg', usersLL[0], imagem);
+        alert('Imagem adicionada');
         navi('/');
     }
 
@@ -83,7 +89,9 @@ export const UserL = () => {
                             </ListItemButton>
                         </ListItem>
                     </List>
-                    <Button className='blogoff' onClick={() => { sair }}><b>Sair</b><LogoutIcon /></Button>
+                    <Button id="button-task" onClick={() => {
+                        Accounts.logout();
+                    }}>Sair</Button>
                 </Drawer>
             </Box>
             <div id='tarefa'>
@@ -96,6 +104,9 @@ export const UserL = () => {
                     <ListItem><span className='list-tar'><b>EMPRESA:</b></span> {usersLL[0].empresa}</ListItem>
                     <ListItem><span className='list-tar'><b>SEXO:</b></span> {usersLL[0].sexo}</ListItem>
                 </List>
+                <FormLabel className='imagem-perfil'><span className='list-tar'>Alterar imagem do perfil:</span></FormLabel><br />
+                <input type="file" id='imagem' onChange={e => setImg(e.target.value)} /><br /><br />
+                <Button id="button-task" onClick={carregaImg} >Salvar</Button>
                 <Button id="button-task" onClick={() => { navi(-1) }} >Voltar</Button>
             </div >
         </>

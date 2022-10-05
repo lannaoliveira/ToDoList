@@ -4,15 +4,13 @@ import { TasksCollection } from '/imports/api/TasksCollection';
 import { useTracker } from 'meteor/react-meteor-data';
 import { List } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
+import Checkbox from '@mui/material/Checkbox';
 
 export const UserArea = () => {
 
     const tasks = useTracker(() => TasksCollection.find({}, { sort: { createdAt: -1 } }).fetch());
     const navi = useNavigate();
-
-    const toggleChecked = ({ _id, isChecked }) => {
-        Meteor.call('checaStatus', _id, isChecked);
-    };
+    const label = { inputProps: { 'aria-label': 'Checkbox' } };
 
     const deleteTask = ({ _id }, usuario) => {
         if (usuario === Accounts.user().username) {
@@ -30,14 +28,20 @@ export const UserArea = () => {
         }
     }
 
+    const retTarefas = () => {
+        return
+    }
+
     return (
         <>
+            <div className='checkbox'>
+                <Checkbox {...label} onChange={retTarefas} />Concluídas
+            </div>
             <List className="tasks">
                 {tasks.map(task => (
                     <Task
                         key={task._id}
                         task={task}
-                        onCheckboxClick={toggleChecked}
                         onDeleteClick={deleteTask}
                         onEditTarefa={editTarefa}
                     />

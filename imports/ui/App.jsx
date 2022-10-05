@@ -6,7 +6,7 @@ import { Index } from './Index';
 import { VeTask } from './VeTask';
 import { UserL } from './UserL';
 import { PaginaInicial } from './PaginaInicial';
-import { EditTask } from '/ToDoList/imports/ui/EditTask';
+import { EditaTask } from './EditaTask';
 
 export const App = () => {
 
@@ -20,9 +20,8 @@ export const App = () => {
           <Route path='/cadastro' element={<NewUser />} />
           <Route path='/tarefas' element={<TaskForm />} />
           <Route path='editatarefa/:id' element={<VeTask />} />
-          <Route path='tarefas/editatarefa/:id' element={<VeTask />} >
-            <Route path='editatarefafinal' element={<EditTask />} />
-          </Route>
+          <Route path='tarefas/editatarefa/:id' element={<VeTask />} />
+          <Route path='tarefas/editatarefa/:id/editatarefafinal' element={<EditaTask />} />
           <Route path='/usuario' element={<UserL />} />
         </Routes>
       </Router>

@@ -31,11 +31,6 @@ export const PaginaInicial = () => {
     const taskAndamento = tasks.filter(o => o.status === 'Andamento');
     const taskConcluida = tasks.filter(o => o.status === 'Concluída');
 
-    const sair = () => {
-        Accounts.logout();
-        navi('/');
-    }
-
     return (
         <>
             <Box sx={{ display: 'flex' }}>
@@ -89,7 +84,9 @@ export const PaginaInicial = () => {
                             </ListItemButton>
                         </ListItem>
                     </List>
-                    <Button className='blogoff' onClick={() => { sair }}><b>Sair</b><LogoutIcon /></Button>
+                    <Button id="button-task" onClick={() => {
+                        Accounts.logout();
+                    }}>Sair</Button>
                 </Drawer>
             </Box>
             <div id='tarefa'>
